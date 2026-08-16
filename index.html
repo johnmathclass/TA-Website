@@ -1,680 +1,691 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="description"
-    content="Georgia Tech teaching assistant course website with studio notes, practice problems, office hours, and student resources."
-  >
-
-  <title>John's TA Website</title>
+  <title>MATH 2551 | John Gamble</title>
 
   <style>
     :root {
-      --gt-navy: #003057;
-      --gt-gold: #b3a369;
-      --gt-light-gold: #e5dfc5;
-      --page-background: #f4f5f7;
-      --card-background: #ffffff;
-      --text-dark: #1f2933;
-      --text-light: #5d6670;
-      --border-color: #d9dde2;
-      --success-background: #edf7f1;
-      --success-border: #2f855a;
+      --navy: #003057;
+      --gold: #B3A369;
+      --text: #222;
+      --muted: #666;
+      --border: #ddd;
+      --background: #fff;
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-      background: var(--page-background);
-      color: var(--text-dark);
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--background);
       line-height: 1.6;
     }
 
-    a {
-      color: var(--gt-navy);
-    }
-
-    a:hover {
-      color: #805d00;
-    }
-
     header {
-      background:
-        linear-gradient(
-          135deg,
-          var(--gt-navy),
-          #001f3b
-        );
-      color: white;
-      padding: 64px 20px 54px;
-      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 55px 25px 30px;
     }
 
     header h1 {
       margin: 0;
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      letter-spacing: -1px;
+      color: var(--navy);
+      font-size: 2.5rem;
     }
 
-    header .subtitle {
-      margin: 12px 0 0;
-      font-size: 1.25rem;
-      color: #f4f4f4;
-    }
-
-    header .course-status {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 8px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.1);
-      font-weight: bold;
+    header p {
+      margin: 5px 0;
+      color: var(--muted);
     }
 
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: var(--gt-gold);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
-    .nav-container {
-      max-width: 1100px;
+    nav div {
+      max-width: 900px;
       margin: 0 auto;
+      padding: 0 25px;
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
+      gap: 25px;
     }
 
     nav a {
-      display: block;
-      padding: 15px 17px;
-      color: #111;
+      padding: 14px 0;
+      color: var(--navy);
       text-decoration: none;
       font-weight: bold;
     }
 
     nav a:hover {
-      background: rgba(255, 255, 255, 0.28);
-      color: #111;
+      color: var(--gold);
     }
 
     main {
-      width: min(1100px, calc(100% - 32px));
-      margin: 34px auto;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 25px 60px;
     }
 
     section {
-      margin-bottom: 30px;
-      scroll-margin-top: 90px;
-    }
-
-    .card {
-      background: var(--card-background);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 28px;
-      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+      padding: 35px 0;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 20px;
     }
 
     h2 {
+      color: var(--navy);
       margin-top: 0;
-      margin-bottom: 18px;
-      color: var(--gt-navy);
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
 
     h3 {
-      color: var(--gt-navy);
+      margin-bottom: 5px;
+      font-size: 1.1rem;
     }
 
-    .welcome-grid,
-    .info-grid {
+    a {
+      color: var(--navy);
+    }
+
+    a:hover {
+      color: var(--gold);
+    }
+
+    .info {
       display: grid;
-      grid-template-columns:
-        repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: 180px 1fr;
+      gap: 7px 20px;
     }
 
-    .mini-card {
-      background: #fafafa;
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 20px;
-    }
-
-    .mini-card h3 {
-      margin-top: 0;
-      margin-bottom: 8px;
-    }
-
-    .announcement {
-      background: var(--success-background);
-      border-left: 5px solid var(--success-border);
-      border-radius: 8px;
-      padding: 18px;
-    }
-
-    .announcement p {
-      margin: 5px 0;
-    }
-
-    .quick-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .button-link {
-      display: inline-block;
-      padding: 10px 16px;
-      border-radius: 7px;
-      background: var(--gt-navy);
-      color: white;
-      text-decoration: none;
+    .label {
       font-weight: bold;
     }
 
-    .button-link:hover {
-      background: #001f3b;
-      color: white;
+    .muted {
+      color: var(--muted);
     }
 
-    .outline-note {
-      margin-bottom: 20px;
-      color: var(--text-light);
+    .week {
+      margin-bottom: 22px;
+    }
+
+    .week h3 {
+      margin-bottom: 6px;
+    }
+
+    .links a {
+      margin-right: 15px;
     }
 
     details {
-      margin-bottom: 14px;
-      border: 1px solid var(--border-color);
-      border-radius: 9px;
-      background: white;
-      overflow: hidden;
+      margin: 12px 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 12px;
     }
 
     summary {
       cursor: pointer;
-      padding: 16px 18px;
-      background: #f8f8f8;
-      color: var(--gt-navy);
       font-weight: bold;
-      font-size: 1.05rem;
+      color: var(--navy);
     }
 
-    summary:hover {
-      background: var(--gt-light-gold);
+    .exam-row {
+      margin: 10px 0;
     }
 
-    .week-content {
-      padding: 18px;
+    .exam-row span {
+      display: inline-block;
+      width: 120px;
     }
 
-    .studio-entry {
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border-color);
+    .exam-row a {
+      margin-right: 12px;
     }
 
-    .studio-entry:last-child {
-      border-bottom: none;
+    .resource {
+      margin-bottom: 25px;
     }
 
-    .studio-entry h4 {
-      margin: 0 0 8px;
-      color: var(--text-dark);
-    }
-
-    .resource-list {
-      padding-left: 20px;
-    }
-
-    .resource-list li {
-      margin-bottom: 10px;
-    }
-
-    .muted {
-      color: var(--text-light);
-    }
-
-    .contact-box p {
-      margin: 7px 0;
-    }
-
-    .disclaimer {
-      margin-top: 20px;
-      padding: 14px;
-      border-radius: 7px;
-      background: #fff8e1;
-      border-left: 5px solid var(--gt-gold);
-      font-size: 0.95rem;
+    .resource h3 {
+      margin-bottom: 3px;
     }
 
     footer {
-      margin-top: 45px;
-      padding: 28px 20px;
-      text-align: center;
-      background: var(--gt-navy);
-      color: white;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 25px;
+      color: var(--muted);
+      font-size: 0.9rem;
     }
 
-    footer p {
-      margin: 5px 0;
-    }
+    @media (max-width: 600px) {
 
-    @media (max-width: 650px) {
-      header {
-        padding-top: 48px;
+      header h1 {
+        font-size: 2rem;
       }
 
-      nav {
-        position: static;
+      nav div {
+        gap: 15px;
       }
 
-      .nav-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+      .info {
+        grid-template-columns: 1fr;
+        gap: 0;
       }
 
-      nav a {
-        text-align: center;
-        padding: 12px 8px;
+      .label {
+        margin-top: 10px;
       }
 
-      .card {
-        padding: 21px;
+      .exam-row span {
+        display: block;
+        width: auto;
+        font-weight: bold;
       }
     }
   </style>
 </head>
 
+
 <body>
 
-  <header>
-    <h1>John's TA Website</h1>
+<header>
 
-    <p class="subtitle">
-      Teaching Assistant · Georgia Institute of Technology
-    </p>
+  <h1>MATH 2551</h1>
 
-    <div class="course-status">
-      Course assignment: To be announced
+  <p>Multivariable Calculus</p>
+
+  <p>
+    John Gamble · Teaching Assistant · Georgia Tech
+  </p>
+
+</header>
+
+
+<nav>
+
+  <div>
+    <a href="#course">Course</a>
+    <a href="#studio">Studio</a>
+    <a href="#exams">Past Exams</a>
+    <a href="#videos">Lecture Videos</a>
+    <a href="#resources">Resources</a>
+    <a href="#office-hours">Office Hours</a>
+  </div>
+
+</nav>
+
+
+<main>
+
+
+<!-- COURSE INFORMATION -->
+
+<section id="course">
+
+  <h2>Course Information</h2>
+
+  <div class="info">
+
+    <div class="label">Course</div>
+    <div>MATH 2551 — Multivariable Calculus</div>
+
+    <div class="label">Instructor</div>
+    <div>TBD</div>
+
+    <div class="label">Teaching Assistant</div>
+    <div>John Gamble</div>
+
+    <div class="label">Studio</div>
+    <div>Monday & Wednesday, 3:00–3:50 PM</div>
+
+    <div class="label">Studio Location</div>
+    <div>TBD</div>
+
+    <div class="label">Email</div>
+    <div>
+      <a href="mailto:jgamble38@gatech.edu">
+        jgamble38@gatech.edu
+      </a>
     </div>
-  </header>
 
-  <nav>
-    <div class="nav-container">
-      <a href="#home">Home</a>
-      <a href="#announcements">Announcements</a>
-      <a href="#outline">Course Outline</a>
-      <a href="#practice">Practice</a>
-      <a href="#resources">Resources</a>
-      <a href="#office-hours">Office Hours</a>
-      <a href="#contact">Contact</a>
+  </div>
+
+  <p class="muted">
+    This website contains supplemental materials for my MATH 2551
+    studio sections. Canvas and the official course syllabus should
+    be used for official course information, assignments, grades,
+    and policies.
+  </p>
+
+</section>
+
+
+<!-- STUDIO -->
+
+<section id="studio">
+
+  <h2>Studio Materials</h2>
+
+  <p>
+    Notes, practice problems, and solutions from studio will be
+    posted here throughout the semester.
+  </p>
+
+
+  <div class="week">
+
+    <h3>Week 1</h3>
+
+    <div class="links">
+      Notes · Problems · Solutions
     </div>
-  </nav>
-
-  <main>
-
-    <section id="home">
-      <div class="card">
-        <h2>Welcome</h2>
-
-        <p>
-          Welcome to my teaching assistant website. This page will
-          contain studio notes, practice problems, course updates,
-          office-hour information, and additional learning resources.
-        </p>
-
-        <p>
-          The course name, studio schedule, and other details will be
-          added once my teaching assignment is confirmed.
-        </p>
-
-        <div class="welcome-grid">
-
-          <div class="mini-card">
-            <h3>Studio Materials</h3>
-            <p>
-              Notes, worksheets, examples, and practice problems from
-              each studio session will be organized by week.
-            </p>
-          </div>
-
-          <div class="mini-card">
-            <h3>Extra Help</h3>
-            <p>
-              Additional videos, websites, and study materials will be
-              added throughout the semester.
-            </p>
-          </div>
-
-          <div class="mini-card">
-            <h3>Office Hours</h3>
-            <p>
-              Office-hour times and locations will be posted here once
-              they are finalized.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="announcements">
-      <div class="card">
-        <h2>Announcements</h2>
-
-        <div class="announcement">
-          <strong>Website launched</strong>
-
-          <p>
-            This website is currently being prepared for the upcoming
-            semester.
-          </p>
-
-          <p class="muted">
-            Last updated: July 24, 2026
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="outline">
-      <div class="card">
-        <h2>Course Outline and Studio Archive</h2>
-
-        <p class="outline-note">
-          Each week will contain materials from both studio meetings.
-          Links to PDFs will be added when materials become available.
-        </p>
-
-        <details open>
-          <summary>Week 1</summary>
-
-          <div class="week-content">
-
-            <div class="studio-entry">
-              <h4>Studio 1</h4>
-              <p>
-                Topic: To be announced
-              </p>
-              <p>
-                Notes · Practice Problems · Solutions
-              </p>
-            </div>
-
-            <div class="studio-entry">
-              <h4>Studio 2</h4>
-              <p>
-                Topic: To be announced
-              </p>
-              <p>
-                Notes · Practice Problems · Solutions
-              </p>
-            </div>
-
-          </div>
-        </details>
-
-        <details>
-          <summary>Week 2</summary>
-
-          <div class="week-content">
-
-            <div class="studio-entry">
-              <h4>Studio 3</h4>
-              <p>
-                Topic: To be announced
-              </p>
-              <p>
-                Notes · Practice Problems · Solutions
-              </p>
-            </div>
-
-            <div class="studio-entry">
-              <h4>Studio 4</h4>
-              <p>
-                Topic: To be announced
-              </p>
-              <p>
-                Notes · Practice Problems · Solutions
-              </p>
-            </div>
-
-          </div>
-        </details>
-
-        <details>
-          <summary>Week 3</summary>
-
-          <div class="week-content">
-
-            <div class="studio-entry">
-              <h4>Studio 5</h4>
-              <p>
-                Topic: To be announced
-              </p>
-              <p>
-                Notes · Practice Problems · Solutions
-              </p>
-            </div>
-
-            <div class="studio-entry">
-              <h4>Studio 6</h4>
-              <p>
-                Topic: To be announced
-              </p>
-              <p>
-                Notes · Practice Problems · Solutions
-              </p>
-            </div>
-
-          </div>
-        </details>
-
-      </div>
-    </section>
-
-    <section id="practice">
-      <div class="card">
-        <h2>Practice Problems</h2>
-
-        <div class="info-grid">
-
-          <div class="mini-card">
-            <h3>Studio Practice</h3>
-            <p>
-              Additional problems related to topics covered during
-              studio.
-            </p>
-          </div>
-
-          <div class="mini-card">
-            <h3>Exam Reviews</h3>
-            <p>
-              Review problems and study guides may be posted before
-              exams.
-            </p>
-          </div>
-
-          <div class="mini-card">
-            <h3>Solutions</h3>
-            <p>
-              Solutions may be posted after students have had time to
-              attempt each assignment.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="resources">
-      <div class="card">
-        <h2>Additional Resources</h2>
-
-        <p>
-          Helpful videos, websites, and outside resources will be added
-          after the course assignment is confirmed.
-        </p>
-
-        <ul class="resource-list">
-          <li>
-            Recommended lecture videos
-          </li>
-
-          <li>
-            Helpful math websites
-          </li>
-
-          <li>
-            Formula sheets and reference material
-          </li>
-
-          <li>
-            Study strategies and common mistakes
-          </li>
-        </ul>
-
-        <p class="muted">
-          These resources are supplemental and do not replace official
-          course material.
-        </p>
-      </div>
-    </section>
-
-    <section id="office-hours">
-      <div class="card">
-        <h2>Office Hours and Studio Information</h2>
-
-        <div class="info-grid">
-
-          <div class="mini-card">
-            <h3>Office Hours</h3>
-            <p>
-              <strong>Days:</strong> To be announced
-            </p>
-
-            <p>
-              <strong>Time:</strong> To be announced
-            </p>
-
-            <p>
-              <strong>Location:</strong> To be announced
-            </p>
-          </div>
-
-          <div class="mini-card">
-            <h3>Studio Meetings</h3>
-
-            <p>
-              <strong>Meeting 1:</strong> To be announced
-            </p>
-
-            <p>
-              <strong>Meeting 2:</strong> To be announced
-            </p>
-
-            <p>
-              <strong>Location:</strong> To be announced
-            </p>
-          </div>
-
-          <div class="mini-card">
-            <h3>What to Bring</h3>
-
-            <p>
-              Course notes, questions, completed attempts, and any
-              materials required by the instructor.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="card contact-box">
-        <h2>Contact</h2>
-
-        <p>
-          <strong>Name:</strong> John
-        </p>
-
-        <p>
-          <strong>Email:</strong>
-          <a href="mailto:your-email@gatech.edu">
-            your-email@gatech.edu
-          </a>
-        </p>
-
-        <p>
-          <strong>Affiliation:</strong>
-          Georgia Institute of Technology
-        </p>
-
-        <p>
-          When emailing, please include the course number and a short
-          description of your question in the subject line.
-        </p>
-
-        <div class="quick-links">
-          <a
-            class="button-link"
-            href="https://canvas.gatech.edu"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Canvas
-          </a>
-
-          <a
-            class="button-link"
-            href="https://gatech.edu"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Georgia Tech
-          </a>
-        </div>
-
-        <div class="disclaimer">
-          This website is maintained by the teaching assistant. Official
-          grades, deadlines, course policies, and instructor
-          announcements should be confirmed through Canvas and the
-          official course syllabus.
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>
-      John's Teaching Assistant Website
-    </p>
+
+  </div>
+
+
+  <div class="week">
+
+    <h3>Week 2</h3>
+
+    <div class="links">
+      Notes · Problems · Solutions
+    </div>
+
+  </div>
+
+
+  <div class="week">
+
+    <h3>Week 3</h3>
+
+    <div class="links">
+      Notes · Problems · Solutions
+    </div>
+
+  </div>
+
+
+  <p class="muted">
+    Additional weeks will be added as the semester progresses.
+  </p>
+
+</section>
+
+
+<!-- EXAMS -->
+
+<section id="exams">
+
+  <h2>Past Exams & Solutions</h2>
+
+  <p>
+    Previous MATH 2551 exams are provided for additional practice.
+    Exams are organized by exam number so you can easily find
+    relevant practice before each test.
+  </p>
+
+
+  <!-- EXAM 1 -->
+
+  <details open>
+
+    <summary>Exam 1</summary>
+
+    <div class="exam-row">
+      <span>Spring 2025</span>
+      <a href="exams/spring-2025/exam-1.pdf">Exam</a>
+      <a href="exams/spring-2025/exam-1-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2024</span>
+      <a href="exams/fall-2024/exam-1.pdf">Exam</a>
+      <a href="exams/fall-2024/exam-1-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2024</span>
+      <a href="exams/spring-2024/exam-1.pdf">Exam</a>
+      <a href="exams/spring-2024/exam-1-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2023</span>
+      <a href="exams/fall-2023/exam-1.pdf">Exam</a>
+      <a href="exams/fall-2023/exam-1-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2023</span>
+      <a href="exams/spring-2023/exam-1.pdf">Exam</a>
+      <a href="exams/spring-2023/exam-1-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2022</span>
+      <a href="exams/fall-2022/exam-1.pdf">Exam</a>
+      <a href="exams/fall-2022/exam-1-solutions.pdf">Solutions</a>
+    </div>
+
+  </details>
+
+
+  <!-- EXAM 2 -->
+
+  <details>
+
+    <summary>Exam 2</summary>
+
+    <div class="exam-row">
+      <span>Spring 2025</span>
+      <a href="exams/spring-2025/exam-2.pdf">Exam</a>
+      <a href="exams/spring-2025/exam-2-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2024</span>
+      <a href="exams/fall-2024/exam-2.pdf">Exam</a>
+      <a href="exams/fall-2024/exam-2-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2024</span>
+      <a href="exams/spring-2024/exam-2.pdf">Exam</a>
+      <a href="exams/spring-2024/exam-2-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2023</span>
+      <a href="exams/fall-2023/exam-2.pdf">Exam</a>
+      <a href="exams/fall-2023/exam-2-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2023</span>
+      <a href="exams/spring-2023/exam-2.pdf">Exam</a>
+      <a href="exams/spring-2023/exam-2-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2022</span>
+      <a href="exams/fall-2022/exam-2.pdf">Exam</a>
+      <a href="exams/fall-2022/exam-2-solutions.pdf">Solutions</a>
+    </div>
+
+  </details>
+
+
+  <!-- EXAM 3 -->
+
+  <details>
+
+    <summary>Exam 3</summary>
+
+    <div class="exam-row">
+      <span>Spring 2025</span>
+      <a href="exams/spring-2025/exam-3.pdf">Exam</a>
+      <a href="exams/spring-2025/exam-3-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2024</span>
+      <a href="exams/fall-2024/exam-3.pdf">Exam</a>
+      <a href="exams/fall-2024/exam-3-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2024</span>
+      <a href="exams/spring-2024/exam-3.pdf">Exam</a>
+      <a href="exams/spring-2024/exam-3-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2023</span>
+      <a href="exams/fall-2023/exam-3.pdf">Exam</a>
+      <a href="exams/fall-2023/exam-3-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2023</span>
+      <a href="exams/spring-2023/exam-3.pdf">Exam</a>
+      <a href="exams/spring-2023/exam-3-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2022</span>
+      <a href="exams/fall-2022/exam-3.pdf">Exam</a>
+      <a href="exams/fall-2022/exam-3-solutions.pdf">Solutions</a>
+    </div>
+
+  </details>
+
+
+  <!-- FINAL -->
+
+  <details>
+
+    <summary>Final Exam</summary>
+
+    <div class="exam-row">
+      <span>Fall 2025</span>
+      <a href="exams/fall-2025/final.pdf">Exam</a>
+      <a href="exams/fall-2025/final-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2024</span>
+      <a href="exams/fall-2024/final.pdf">Exam</a>
+      <a href="exams/fall-2024/final-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2024</span>
+      <a href="exams/spring-2024/final.pdf">Exam</a>
+      <a href="exams/spring-2024/final-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2023</span>
+      <a href="exams/fall-2023/final.pdf">Exam</a>
+      <a href="exams/fall-2023/final-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2023</span>
+      <a href="exams/spring-2023/final.pdf">Exam</a>
+      <a href="exams/spring-2023/final-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2022</span>
+      <a href="exams/fall-2022/final.pdf">Exam</a>
+      <a href="exams/fall-2022/final-solutions.pdf">Solutions</a>
+    </div>
+
+  </details>
+
+
+  <p class="muted">
+    Past exams and solutions were originally made available through
+    previous Georgia Tech MATH 2551 course resources.
+  </p>
+
+</section>
+
+
+<!-- LECTURE VIDEOS -->
+
+<section id="videos">
+
+  <h2>Recommended Lecture Videos</h2>
+
+  <p>
+    If you want another explanation of material outside of lecture
+    or studio, I recommend Hunter Lehmann's archived MATH 2551
+    lectures. These are the two lecture series I personally used
+    when I took MATH 2551.
+  </p>
+
+
+  <div class="resource">
+
+    <h3>Spring 2025 — MATH 2551 C/HP</h3>
 
     <p>
-      Georgia Institute of Technology
+      <a
+        href="https://hunterlehmann.github.io/teaching/MATH2551/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Lecture Recordings
+      </a>
+
+      ·
+
+      <a
+        href="https://hunterlehmann.github.io/teaching/MATH2551/Math_2551_Notes_Spring_25.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Lecture Notes
+      </a>
     </p>
-  </footer>
+
+  </div>
+
+
+  <div class="resource">
+
+    <h3>Fall 2024 — MATH 2551 D</h3>
+
+    <p>
+      <a
+        href="https://mediaspace.gatech.edu/playlist/dedicated/1_5j3172rl/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Lecture Recordings
+      </a>
+
+      ·
+
+      <a
+        href="https://hunterlehmann.github.io/teaching/MATH2551/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Lecture Notes
+      </a>
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- RESOURCES -->
+
+<section id="resources">
+
+  <h2>Additional Resources</h2>
+
+
+  <div class="resource">
+
+    <h3>Hunter Lehmann's MATH 2551 Resources</h3>
+
+    <p>
+      Lecture notes, archived recordings, past exams, solutions,
+      and other MATH 2551 resources.
+    </p>
+
+    <a
+      href="https://hunterlehmann.github.io/teaching/MATH2551/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      View MATH 2551 Resources
+    </a>
+
+  </div>
+
+
+  <div class="resource">
+
+    <h3>Canvas</h3>
+
+    <p>
+      Use Canvas for official announcements, assignments,
+      grades, deadlines, and course information.
+    </p>
+
+    <a
+      href="https://canvas.gatech.edu/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Georgia Tech Canvas
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- OFFICE HOURS -->
+
+<section id="office-hours">
+
+  <h2>Office Hours</h2>
+
+  <div class="info">
+
+    <div class="label">Day</div>
+    <div>Monday</div>
+
+    <div class="label">Time</div>
+    <div>4:00–5:00 PM</div>
+
+    <div class="label">Location</div>
+    <div>TBD</div>
+
+    <div class="label">Email</div>
+    <div>
+      <a href="mailto:jgamble38@gatech.edu">
+        jgamble38@gatech.edu
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+  John Gamble · MATH 2551 · Georgia Institute of Technology
+
+</footer>
+
 
 </body>
 </html>
