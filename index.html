@@ -1,59 +1,825 @@
-TA-Website/
-│
-├── index.html
-│
-├── studios/
-│   │
-│   ├── studio-answer-key.pdf
-│   │
-│   ├── exam-1/
-│   │   ├── prerequisite-review.pdf
-│   │   ├── 12-1.pdf
-│   │   ├── 12-4.pdf
-│   │   ├── 12-5.pdf
-│   │   ├── 12-6.pdf
-│   │   ├── 13-1.pdf
-│   │   ├── 13-2.pdf
-│   │   ├── 13-3.pdf
-│   │   ├── 13-4.pdf
-│   │   ├── 14-1.pdf
-│   │   ├── 14-2.pdf
-│   │   └── exam-1-review.pdf
-│   │
-│   ├── exam-2/
-│   │   ├── 14-3.pdf
-│   │   ├── 14-4.pdf
-│   │   ├── 14-5.pdf
-│   │   ├── 14-6.pdf
-│   │   ├── 14-7-a.pdf
-│   │   ├── 14-7-b.pdf
-│   │   ├── 14-8.pdf
-│   │   ├── 15-1.pdf
-│   │   ├── 15-2.pdf
-│   │   ├── 15-3.pdf
-│   │   ├── 15-4.pdf
-│   │   └── exam-2-review.pdf
-│   │
-│   ├── exam-3/
-│   │   ├── 15-5.pdf
-│   │   ├── 15-6.pdf
-│   │   ├── 15-7.pdf
-│   │   ├── 15-8.pdf
-│   │   ├── 16-1.pdf
-│   │   ├── 16-2.pdf
-│   │   ├── 16-3.pdf
-│   │   ├── 16-4.pdf
-│   │   ├── 16-5.pdf
-│   │   ├── 16-6.pdf
-│   │   ├── 16-7.pdf
-│   │   └── exam-3-review.pdf
-│   │
-│   └── final/
-│       └── final-review.pdf
-│
-├── practice/
-│   ├── true-false-bank.pdf
-│   └── true-false-bank-answers.pdf
-│
-└── exams/
-    └── your existing exam folders...
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MATH 2551 | John Gamble</title>
+
+  <style>
+    :root {
+      --navy: #003057;
+      --gold: #B3A369;
+      --text: #222;
+      --muted: #666;
+      --border: #ddd;
+      --background: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.6;
+    }
+
+    header {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 55px 25px 30px;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin: 5px 0;
+      color: var(--muted);
+    }
+
+    nav {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav div {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 25px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    nav a {
+      padding: 14px 0;
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 25px 60px;
+    }
+
+    section {
+      padding: 35px 0;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 20px;
+    }
+
+    h2 {
+      color: var(--navy);
+      margin-top: 0;
+      font-size: 1.6rem;
+    }
+
+    h3 {
+      margin-bottom: 5px;
+      font-size: 1.1rem;
+    }
+
+    a {
+      color: var(--navy);
+    }
+
+    a:hover {
+      color: var(--gold);
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 7px 20px;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .week {
+      margin-bottom: 22px;
+    }
+
+    details {
+      margin: 12px 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 12px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--navy);
+    }
+
+    .worksheet {
+      margin: 7px 0;
+    }
+
+    .exam-row {
+      margin: 10px 0;
+    }
+
+    .exam-row span {
+      display: inline-block;
+      width: 120px;
+    }
+
+    .exam-row a {
+      margin-right: 12px;
+    }
+
+    .resource {
+      margin-bottom: 25px;
+    }
+
+    .resource h3 {
+      margin-bottom: 3px;
+    }
+
+    footer {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 25px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      nav div {
+        gap: 15px;
+      }
+
+      .info {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .label {
+        margin-top: 10px;
+      }
+
+      .exam-row span {
+        display: block;
+        width: auto;
+        font-weight: bold;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+<header>
+
+  <h1>MATH 2551</h1>
+
+  <p>Multivariable Calculus</p>
+
+  <p>
+    John Gamble · Teaching Assistant · Georgia Tech
+  </p>
+
+</header>
+
+
+<nav>
+
+  <div>
+    <a href="#course">Course</a>
+    <a href="#studio">Studio</a>
+    <a href="#practice">Practice</a>
+    <a href="#exams">Past Exams</a>
+    <a href="#videos">Lecture Videos</a>
+    <a href="#resources">Resources</a>
+  </div>
+
+</nav>
+
+
+<main>
+
+
+<!-- COURSE INFORMATION -->
+
+<section id="course">
+
+  <h2>Course Information</h2>
+
+  <div class="info">
+
+    <div class="label">Course</div>
+    <div>MATH 2551 — Multivariable Calculus</div>
+
+    <div class="label">Instructor</div>
+    <div>Hunter Lehmann</div>
+
+    <div class="label">Teaching Assistant</div>
+    <div>John Gamble</div>
+
+    <div class="label">Studio</div>
+    <div>Monday & Wednesday, 3:00–3:50 PM</div>
+
+    <div class="label">Location</div>
+    <div>Skiles 171</div>
+
+    <div class="label">Email</div>
+    <div>
+      <a href="mailto:jgamble38@gatech.edu">
+        jgamble38@gatech.edu
+      </a>
+    </div>
+
+  </div>
+
+  <p class="muted">
+    This website contains supplemental materials for my MATH 2551
+    studio sections. Canvas and the official course syllabus should
+    be used for official course information, assignments, grades,
+    and policies.
+  </p>
+
+</section>
+
+
+<!-- CURRENT STUDIO -->
+
+<section id="studio">
+
+  <h2>Studio Materials</h2>
+
+  <div class="week">
+    <h3>Week 1</h3>
+    <div class="muted">
+      Problems and solutions will be posted soon.
+    </div>
+  </div>
+
+</section>
+
+
+<!-- PRACTICE -->
+
+<section id="practice">
+
+  <h2>Additional Practice</h2>
+
+
+  <!-- PREVIOUS STUDIOS -->
+
+  <div class="resource">
+
+    <h3>Previous Studio Worksheets</h3>
+
+    <p>
+      Studio worksheets from when I took MATH 2551.
+    </p>
+
+    <p class="muted">
+      These are organized according to the exam breakdown used that semester.
+      Course pacing and exam coverage may differ this semester.
+    </p>
+
+
+    <details>
+
+      <summary>Exam 1</summary>
+
+      <div class="worksheet">
+        <a href="studios/exam-1/prerequisite-review.pdf">Prerequisite Review</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-1/12-1.pdf">12.1 — R³</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-1/12-4.pdf">12.4 — Cross Products</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-1/12-5.pdf">12.5 — Lines and Planes</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-1/12-6.pdf">12.6 — Quadric Surfaces</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-1/13-1.pdf">13.1 — Curves in Space</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-1/13-2.pdf">13.2 — Vector-Valued Functions</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-1/13-3.pdf">13.3 — Arc Length</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-1/13-4.pdf">13.4 — Curvature and Normals</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-1/14-1.pdf">14.1 — Multivariable Functions</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-1/14-2.pdf">14.2 — Limits and Continuity</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-1/exam-1-review.pdf">Exam 1 Review</a>
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>Exam 2</summary>
+
+      <div class="worksheet">
+        <a href="studios/exam-2/14-3.pdf">14.3 — Partial Derivatives</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-2/14-4.pdf">14.4 — Chain Rule</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-2/14-5.pdf">14.5 — Gradient and Directional Derivatives</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-2/14-6.pdf">14.6 — Linearization and Tangent Planes</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-2/14-7-a.pdf">14.7 — Optimization I</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-2/14-7-b.pdf">14.7 — Optimization II</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-2/14-8.pdf">14.8 — Lagrange Multipliers</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-2/15-1.pdf">15.1 — Double Integrals on Rectangles</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-2/15-2.pdf">15.2 — Double Integrals on General Regions</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-2/15-3.pdf">15.3 — Applications of Double Integrals</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-2/15-4.pdf">15.4 — Polar Double Integrals</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-2/exam-2-review.pdf">Exam 2 Review</a>
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>Exam 3</summary>
+
+      <div class="worksheet">
+        <a href="studios/exam-3/15-5.pdf">15.5 — Triple Integrals</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-3/15-6.pdf">15.6 — Mass and Moments</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-3/15-7.pdf">15.7 — Cylindrical and Spherical Coordinates</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-3/15-8.pdf">15.8 — Change of Variables</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-3/16-1.pdf">16.1 — Scalar Line Integrals</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-3/16-2.pdf">16.2 — Vector Line Integrals</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-3/16-3.pdf">16.3 — Conservative Vector Fields</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-3/16-4.pdf">16.4 — Curl, Divergence, and Green's Theorem</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-3/16-5.pdf">16.5 — Surfaces</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-3/16-6.pdf">16.6 — Surface Integrals</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-3/16-7.pdf">16.7 — Stokes' Theorem</a>
+      </div>
+
+      <div class="worksheet">
+        <a href="studios/exam-3/exam-3-review.pdf">Exam 3 Review</a>
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>Final Exam</summary>
+
+      <div class="worksheet">
+        <a href="studios/final/final-review.pdf">Final Exam Review</a>
+      </div>
+
+    </details>
+
+
+    <p>
+      <a href="studios/studio-answer-key.pdf">
+        Full Studio Answer Key
+      </a>
+    </p>
+
+  </div>
+
+
+  <!-- TRUE / FALSE BANK -->
+
+  <div class="resource">
+
+    <h3>True / False Practice Bank</h3>
+
+    <p class="muted">
+      Additional conceptual practice covering the course.
+    </p>
+
+    <a href="practice/true-false-bank.pdf">
+      Problems
+    </a>
+
+    ·
+
+    <a href="practice/true-false-bank-answers.pdf">
+      Answers
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- PAST EXAMS -->
+
+<section id="exams">
+
+  <h2>Past Exams & Solutions</h2>
+
+  <p>
+    Previous MATH 2551 exams are provided for additional practice.
+  </p>
+
+
+  <details>
+
+    <summary>Exam 1</summary>
+
+    <div class="exam-row">
+      <span>Spring 2025</span>
+      <a href="exams/spring-2025/exam-1.pdf">Exam</a>
+      <a href="exams/spring-2025/exam-1-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2024</span>
+      <a href="exams/fall-2024/exam-1.pdf">Exam</a>
+      <a href="exams/fall-2024/exam-1-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2024</span>
+      <a href="exams/spring-2024/exam-1.pdf">Exam</a>
+      <a href="exams/spring-2024/exam-1-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2023</span>
+      <a href="exams/fall-2023/exam-1.pdf">Exam</a>
+      <a href="exams/fall-2023/exam-1-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2023</span>
+      <a href="exams/spring-2023/exam-1.pdf">Exam</a>
+      <a href="exams/spring-2023/exam-1-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2022</span>
+      <a href="exams/fall-2022/exam-1.pdf">Exam</a>
+      <a href="exams/fall-2022/exam-1-solutions.pdf">Solutions</a>
+    </div>
+
+  </details>
+
+
+  <details>
+
+    <summary>Exam 2</summary>
+
+    <div class="exam-row">
+      <span>Spring 2025</span>
+      <a href="exams/spring-2025/exam-2.pdf">Exam</a>
+      <a href="exams/spring-2025/exam-2-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2024</span>
+      <a href="exams/fall-2024/exam-2.pdf">Exam</a>
+      <a href="exams/fall-2024/exam-2-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2024</span>
+      <a href="exams/spring-2024/exam-2.pdf">Exam</a>
+      <a href="exams/spring-2024/exam-2-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2023</span>
+      <a href="exams/fall-2023/exam-2.pdf">Exam</a>
+      <a href="exams/fall-2023/exam-2-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2023</span>
+      <a href="exams/spring-2023/exam-2.pdf">Exam</a>
+      <a href="exams/spring-2023/exam-2-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2022</span>
+      <a href="exams/fall-2022/exam-2.pdf">Exam</a>
+      <a href="exams/fall-2022/exam-2-solutions.pdf">Solutions</a>
+    </div>
+
+  </details>
+
+
+  <details>
+
+    <summary>Exam 3</summary>
+
+    <div class="exam-row">
+      <span>Spring 2025</span>
+      <a href="exams/spring-2025/exam-3.pdf">Exam</a>
+      <a href="exams/spring-2025/exam-3-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2024</span>
+      <a href="exams/fall-2024/exam-3.pdf">Exam</a>
+      <a href="exams/fall-2024/exam-3-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2024</span>
+      <a href="exams/spring-2024/exam-3.pdf">Exam</a>
+      <a href="exams/spring-2024/exam-3-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2023</span>
+      <a href="exams/fall-2023/exam-3.pdf">Exam</a>
+      <a href="exams/fall-2023/exam-3-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2023</span>
+      <a href="exams/spring-2023/exam-3.pdf">Exam</a>
+      <a href="exams/spring-2023/exam-3-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2022</span>
+      <a href="exams/fall-2022/exam-3.pdf">Exam</a>
+      <a href="exams/fall-2022/exam-3-solutions.pdf">Solutions</a>
+    </div>
+
+  </details>
+
+
+  <details>
+
+    <summary>Final Exam</summary>
+
+    <div class="exam-row">
+      <span>Fall 2025</span>
+      <a href="exams/fall-2025/final.pdf">Exam</a>
+      <a href="exams/fall-2025/final-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2024</span>
+      <a href="exams/fall-2024/final.pdf">Exam</a>
+      <a href="exams/fall-2024/final-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2024</span>
+      <a href="exams/spring-2024/final.pdf">Exam</a>
+      <a href="exams/spring-2024/final-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2023</span>
+      <a href="exams/fall-2023/final.pdf">Exam</a>
+      <a href="exams/fall-2023/final-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Spring 2023</span>
+      <a href="exams/spring-2023/final.pdf">Exam</a>
+      <a href="exams/spring-2023/final-solutions.pdf">Solutions</a>
+    </div>
+
+    <div class="exam-row">
+      <span>Fall 2022</span>
+      <a href="exams/fall-2022/final.pdf">Exam</a>
+      <a href="exams/fall-2022/final-solutions.pdf">Solutions</a>
+    </div>
+
+  </details>
+
+</section>
+
+
+<!-- LECTURES -->
+
+<section id="videos">
+
+  <h2>Recommended Lecture Videos</h2>
+
+  <p>
+    If you want another explanation of material outside of lecture
+    or studio, I recommend Hunter Lehmann's archived MATH 2551
+    lectures. These are the two lecture series I personally used
+    when I took MATH 2551.
+  </p>
+
+
+  <div class="resource">
+
+    <h3>Spring 2025 — MATH 2551 C/HP</h3>
+
+    <p>
+
+      <a
+        href="https://mediaspace.gatech.edu/channel/MATH+2551+C_HP+Lecture+Videos/364751532"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Lecture Recordings
+      </a>
+
+      ·
+
+      <a
+        href="https://hunterlehmann.github.io/assets/MATH2551/Notes/Math_2551_Notes_Spring_25.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Lecture Notes
+      </a>
+
+    </p>
+
+  </div>
+
+
+  <div class="resource">
+
+    <h3>Fall 2024 — MATH 2551 D</h3>
+
+    <p>
+
+      <a
+        href="https://mediaspace.gatech.edu/playlist/dedicated/1_5j3172rl/1_qrk353z1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Lecture Recordings
+      </a>
+
+      ·
+
+      <a
+        href="https://hunterlehmann.github.io/assets/MATH2551/Notes/Math_2551_Notes_Fall_24.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Lecture Notes
+      </a>
+
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- RESOURCES -->
+
+<section id="resources">
+
+  <h2>Additional Resources</h2>
+
+  <div class="resource">
+
+    <h3>Hunter Lehmann's MATH 2551 Resources</h3>
+
+    <p>
+      Additional lecture notes, archived recordings, past exams,
+      solutions, and other MATH 2551 resources.
+    </p>
+
+    <a
+      href="https://hunterlehmann.github.io/teaching/MATH2551/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      View MATH 2551 Resources
+    </a>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+  John Gamble · MATH 2551 · Georgia Institute of Technology
+  <br>
+  Last updated: August 20, 2026
+
+</footer>
+
+
+</body>
+
+</html>
